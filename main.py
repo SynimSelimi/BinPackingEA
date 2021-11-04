@@ -15,9 +15,14 @@ print("items:", items)
 def unique(_list):
     return list(set(_list))
 
+def format(_s):
+    return "{0: <19}".format(str(_s), end="")
+
 def print_population(_pop):
     for row in _pop:
-        print("items:", *row, "bins:", measure_bins(row), fitness(row))
+        print("items:", format(row), end="  ")
+        print("bins:", format(measure_bins(row)), end="  ")
+        print("fitness:", format(fitness(row)))
 
 def measure_bins(solution):
     bins = [0] * number_of_bins
