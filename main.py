@@ -12,9 +12,12 @@ print("bins:", number_of_bins, "|_| " * number_of_bins)
 print("bin capacity:", max_weight)
 print("items:", items)
 
+def unique(_list):
+    return list(set(_list))
+
 def print_population(_pop):
     for row in _pop:
-        print("items:", *row, "bins:", measure_bins(row))
+        print("items:", *row, "bins:", measure_bins(row), fitness(row))
 
 def measure_bins(solution):
     bins = [0] * number_of_bins
@@ -22,6 +25,10 @@ def measure_bins(solution):
         bins[bin - 1] += items[item]
         
     return bins
+
+def fitness(solution, weighted = False):
+    taken_bins = unique(solution)
+    return sum(taken_bins) if weighted else len(taken_bins)
 
 def find_a_solution():
     bins = [i for i in range(1, number_of_bins + 1)]
